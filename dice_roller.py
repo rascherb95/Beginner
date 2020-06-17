@@ -1,18 +1,26 @@
 import random
 import time
 
-roll_again = 'yes'
+start_game = input('\n Do you want to play "Dice Roller?\n \t y/n>')
+
+if start_game == 'y':
+    roll_again = 'yes'
+    print("Enjoy!")
+else:
+    time.sleep(2)
+    print('\n\nfuck you too buddy\n\n')
+    quit()
 
 print('\nWelcome to the dice roller\n')
 time.sleep(1)
 
-print('\nLet\'s begin\n')
+print('\nLet\'s begin\n') #\' used on purpose to test
 time.sleep(1)
 
 while roll_again == 'yes' or roll_again == 'y':
     print('\nRolling the dice...\n')
     time.sleep(1)
-    player1 = random.randint(1,6)
+    player1 = random.randint(1,6)  #to eventually add variable dice #'s
     enemy = random.randint(1,6)
 
     print('You rolled a:', f'{player1}')
