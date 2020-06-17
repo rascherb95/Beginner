@@ -1,2 +1,2 @@
 # Beginner Projects
- updated to be linked to ATOM
+ why are you wasting your time reading this
