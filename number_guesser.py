@@ -81,9 +81,9 @@ time.sleep(1)
 #i believe it is because (=0) is immutable and would require a (guesses_taken =)
 #similar to playerwin, lives_left = (mutable - mutable) so -= works
 
-guesses_taken = 0    #changed all g_t code to lives_left after g_t didnt work
+guesses_taken = 0    #are vars (set = X) immutable, like below var playerwin
 lives_left = lives - guesses_taken   #doesn't run without vars. cant set = 0
-playerwin = 'no' #this variable is changed by the guess == correct lines
+playerwin = 'no' #immutable
 
 
 
