@@ -59,7 +59,7 @@ while True:
 time.sleep(1)
 
 if lives > 0:
-    
+
     print("You'll start with", lives, 'lives')
 
 else:
@@ -78,6 +78,8 @@ time.sleep(1)
 #guessses+taken isnt
 #workaround is using lives_left -=1 instead of guesses_taken += 1
 
+#i believe it is because (=0) is immutable and would require a (guesses_taken =)
+#similar to playerwin, lives_left = (mutable - mutable) so -= works
 
 guesses_taken = 0    #changed all g_t code to lives_left after g_t didnt work
 lives_left = lives - guesses_taken   #doesn't run without vars. cant set = 0
