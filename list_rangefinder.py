@@ -10,6 +10,13 @@ def rangefinder(number):
         foundrange.append(x)
         n += 1
 
+def ListAverage(listname):
+    a = sum(listname)
+    b = len(listname)
+    return a / b
+
+
+
 rangefinder(x)
 foundrange.sort()
 print(*foundrange)
@@ -37,11 +44,12 @@ print(*foundrange)
 
 
 list1 = foundrange[0]
-print("Here's the first number in the list")
-print(list1)
+print("Here's the average of the list")
+print(ListAverage(foundrange))
 
+print('There are',len(foundrange), 'numbers in the list')
 
-input1 = int(input('Pick a # from the sorted list:>\t'))
+input1 = int(input('Pick a # from the sorted list to remove:>\t'))
 
 input1_list = foundrange[input1]
 print(input1_list)
