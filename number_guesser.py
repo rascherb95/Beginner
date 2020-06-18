@@ -5,7 +5,7 @@ start_game = input('''\nWould you like to play "Number Guesser?"\n\t\ty/n >\t'''
 
 if start_game == 'y':
     game_on = 'YES'
-    print("Good luck!")
+
 else:
     game_on == 'NO'
     quit()
@@ -14,33 +14,44 @@ print('Welcome to the Number Guesser!')
 
 time.sleep(1)
 
-#print('Select two numbers, separated by a comma')
+print('Select two numbers')
 
 time.sleep(1)
 
-NG_range = []
-maxLengthList = 2
-
-while len(NG_range) < maxLengthList:
-    number = int(input("Select a number\n >\t"))  #error check for no number?
-    NG_range.append(number)
-
-NG_range.sort(key=int)   #sorts the list, only works with integer input
-
-print('You have selected the following numbers:')
-print(f'\t{NG_range}')
+num1, num2 = input('#1: '),input('#2: ')
 
 time.sleep(1)
 
-print('Great! Now let\'s play')
-time.sleep (1)
+lower_bound = min(num1,num2)
+upper_bound = max(num1,num2)
 
-ready_check = input('Are you ready?\n y/n >\t')
+correct_answer = (random.randint(lower_bound, upper_bound))
 
-if ready_check == 'y':
-    pass
+print(answer1)
 
-else:
-    time.sleep(1)
-    print('Come back later!')
-    quit()
+print('Your numbers are:', lower_bound,'and',upper_bound)
+
+time.sleep(1)
+
+print('How many guesses would you like?')
+
+lives = int(input('Select a number of lives:\n\t'))
+
+time.sleep(1)
+
+print("You'll start with", lives, 'lives')
+
+guesses_taken = 0
+
+while guesses_taken < lives:
+    print('What do you think the answer is?')
+    guess = int(input())
+    if guess == correct_answer:
+        print('Congrats! You won!')
+        quit()
+    else:
+        gueese_taken += 1
+        continue
+
+
+    #quit()
