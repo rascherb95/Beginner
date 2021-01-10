@@ -11,14 +11,14 @@
 
 # Import the modules
 import requests
-import JSON
+import _json
 
 # Define a business ID
 #business_id =
 
 # define the API key, Define the endpoint, and then define the reader
 API_Key = 'nryKeiIA_hhJyilGu5gem6jFKJHy-UvSLaTTY-aHIpWLwRHJMKEjC9qKUfRND6AHP3J6Bc_M___pIy42YSPApMLl0zv_-ZNIVI64mKvQ33qY3-02wY_56SlZHlL7X3Yx'
-ENDPOINT = 'https:/api.yelp.com/v3/businesses/search'
+ENDPOINT = 'https://api.yelp.com/v3/businesses/search'
 HEADERS = {'Authorization': 'bearer %s' % API_Key}
 
 # define the parameters. key is parameter,
@@ -29,9 +29,11 @@ PARAMETERS = {'term':'pizza',
 
 # make a request to the yelp API_Key
 #create a variable to store response
-Response = requests.get(URL = ENDPOINT, params = PARAMETERS, headers = HEADERS)
+response = requests.get(url = ENDPOINT, params = PARAMETERS, headers = HEADERS)
 
 #convert JSON to a dictionary that we can iterate through
 business_data = response.json()
 
-print(business_data)
+for biz in business_data['businesses']:
+    print(biz['name'])
+    print(biz['url'])
