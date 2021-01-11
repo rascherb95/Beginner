@@ -68,7 +68,7 @@ else:
 
 time.sleep(1)
 
-    print('See you later!')
+#    print('See you later!')
 
 time.sleep(1)
 
@@ -78,65 +78,66 @@ time.sleep(1)
 #guessses+taken isnt
 #workaround is using lives_left -=1 instead of guesses_taken += 1
 
-#i believe it is because (=0) is immutable and would require a (guesses_taken =)
+#i believe it is bpecause (=0) is immutable and would require a (guesses_taken =)
 #similar to playerwin, lives_left = (mutable - mutable) so -= works
 
 guesses_taken = 0    #are vars (set = X) immutable, like below var playerwin
 lives_left = lives - guesses_taken   #doesn't run without vars. cant set = 0
-playerwin = 'no' #immutable
+playerwin = False
 
 
 
 while lives_left > 0 :
-    if playerwin == 'no':
+    if lives_left == 1: #correctly runs
+        print('Last life! Make it count')
+        while True:
+            try:
+                guess = int(input('> \t'))
+                if guess == correct_answer:
+                    playerwin = True
+                    print(playerwin)
+                else:
+                    print('Wrong 1!')
+                    lives_left -= 1
+                    print(playerwin)
+                break
+            except:
+                ValueError
+                print('Please guess a number 1')
 
-        if lives_left == 1: #correctly runs
-            print('Last life! Make it count')
-            while True:
-                try:
-                    guess = int(input('> \t'))
-                    if guess == correct_answer:
-                        playerwin = 'yessir'  #to check which win condition
-                    else:
-                        print('Wrong 1!')
-                        lives_left -= 1
-                    break
-                except:
-                    ValueError
-                    print('Please guess a number 1')
+    else: #correctly runs
+        time.sleep(.5)
+        print(f'You have {lives_left} lives remaining') #correctly prints
+        print('What\'s my number?')
+        while True:
 
-        else: #correctly runs
-            time.sleep(.5)
-            print(f'You have {lives_left} lives remaining') #correctly prints
-            print('What\'s my number?')
-            while True:
+            try:
+                guess = int(input('> \t'))
+                if guess == correct_answer:
+                    playerwin = True
+                    print(playerwin)
 
-                try:
-                    guess = int(input('> \t'))
-                    if guess == correct_answer:
-                        playerwin = 'yes'
+                else:
+                    print('Wrong!')
+                    lives_left -= 1    #this operates correctly
+                    guesses_taken += 1 #this doesnt do shit
+                    print(playerwin)
 
-                    else:
-                        print('Wrong!')
-                        lives_left -= 1    #this operates correctly
-                        guesses_taken += 1 #this doesnt do shit
+                break
 
-                    break
-
-                except:
-                    ValueError
-                    print('Please type a number')
+            except:
+                ValueError
+                print('Please type a number')
 
 
-        if lives_left == 0: #correctly runs except for starting with 0 lives
-            print('Sorry, you ran out of lives!')
-            sys.exit()
-
-    elif playerwin == 'yessir':   #win 1 & win2 conditions properly work
-        print('Win 1')
+    if lives_left == 0: #correctly runs except for starting with 0 lives
+        print('Sorry, you ran out of lives!')
         sys.exit()
-    else:
-        print('win 2')
-        sys.exit()
+
+if (playerwin):   #win 1 & win2 conditions properly work
+    print('Win 1')
+else:
+    print('you lose')
+    sys.exit()
 
     #quit()

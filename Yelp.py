@@ -11,27 +11,33 @@
 
 # Import the modules
 import requests
-import JSON
+import json
+import time
+start_time = time.time()
 
 # Define a business ID
 #business_id =
 
 # define the API key, Define the endpoint, and then define the reader
 API_Key = 'nryKeiIA_hhJyilGu5gem6jFKJHy-UvSLaTTY-aHIpWLwRHJMKEjC9qKUfRND6AHP3J6Bc_M___pIy42YSPApMLl0zv_-ZNIVI64mKvQ33qY3-02wY_56SlZHlL7X3Yx'
-ENDPOINT = 'https:/api.yelp.com/v3/businesses/search'
+ENDPOINT = 'https://api.yelp.com/v3/businesses/search'
 HEADERS = {'Authorization': 'bearer %s' % API_Key}
 
 # define the parameters. key is parameter,
 PARAMETERS = {'term':'pizza',
               'limit': 50,
-              'radius': 10000,
-              'location': 'Philadelphia'}
+              'radius': 1000,
+              'sort_by': 'rating',
+              'location': 19130}
 
-# make a request to the yelp API_Key
-#create a variable to store response
-Response = requests.get(URL = ENDPOINT, params = PARAMETERS, headers = HEADERS)
+#defined variable to hold the response
+response = requests.get(url = ENDPOINT, params = PARAMETERS, headers = HEADERS)
 
 #convert JSON to a dictionary that we can iterate through
 business_data = response.json()
 
-print(business_data)
+#iterate thru dict, for each item in dict print the name
+for biz in business_data['businesses']:
+    print(biz['name'])
+
+print("--- %s seconds ---" % (time.time() - start_time))
