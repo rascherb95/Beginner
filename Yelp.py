@@ -23,9 +23,9 @@ HEADERS = {'Authorization': 'bearer %s' % API_Key}
 
 # define the parameters. key is parameter,
 PARAMETERS = {'term':'pizza',
-              'limit': 50,
-              'radius': 10000,
-              'location': 'Philadelphia'}
+              'limit': 10,
+              'radius': 1000,
+              'location': 19130}
 
 # make a request to the yelp API_Key
 #create a variable to store response
@@ -36,4 +36,4 @@ business_data = response.json()
 
 for biz in business_data['businesses']:
     print(biz['name'])
-    print(biz['url'])
+    print(biz['price'])
