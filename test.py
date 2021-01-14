@@ -23,9 +23,9 @@ class PortfolioPosition(object):
         return self.__position_size
     def update_position_size(self,position_size):
         self.__position_size = position_size
-    def get_position__value(self):
+    def get_position_value(self):
         return self.__position_size * \
-               self.position.get.price()
+               self.position.get_price()
 
 pp = PortfolioPosition(fi, 10)
 

@@ -4,20 +4,30 @@ import requests
 import json
 
 api_key = '695b86f565c2d9468123e937ad407980'
-city = 'Philadelphia'
-state = 'Pennsylvania'
-payload = 'main.temp'
+city = input(print("What City? >>"))
+state = input(print("What State? >>"))
 
 #url
-url_id = "http://api.openweathermap.org/data/2.5/weather?q={},{},{}&appid={}".format(city,state,payload,api_key)
+url_id = "http://api.openweathermap.org/data/2.5/weather?q={},{}&units=imperial&appid={}".format(city,state,api_key)
 
-
-response = requests.get('{}'.format(url_id))
-
+response = requests.get(url_id)
+weather_data = json.loads(response.text)
 
 if response:
-    print("Success!")
+    pass
 else:
-    print("Not found")
+    print('Re-enter your location')
+    exit()
 
-print(response.text)
+air_temp = weather_data['main']['temp']
+real_feel = weather_data['main']['feels_like']
+delta = air_temp - real_feel
+
+
+print('The air temp is  {0}'.format(air_temp))
+print('The real feel is {0}'.format(real_feel))
+
+if air_temp > real_feel:
+    print("It's colder than it feels")
+else:
+    print ("It's warmer than you think")
