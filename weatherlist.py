@@ -27,10 +27,13 @@ class ListRecipient:
         weather_data = json.loads(response.text)
         print(weather_data)  #this prints all JSON data
 
-    def get_current_temp(self):
-        current_temp = weather_data['main']['temp']
-    def get_real_feel(self):
-        real_feel = weather_data['main']['temp']
+
+#these methods don't work - weather_data var isn;t pulled in, so API params
+# arent passed through api. will nest or restructure get_weather_data
+    #def get_current_temp(self):
+    #    current_temp = weather_data['main']['temp']
+    #def get_real_feel(self):
+    #    real_feel = weather_data['main']['temp']
 
 #create our list of ListRecipients
 mailing_list = []
