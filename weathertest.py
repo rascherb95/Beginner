@@ -2,9 +2,9 @@ import requests
 import json
 import ssl
 import smtplib
+from decouple import config
 
-#api key, location
-api_key = ''
+api_key = config('weather_api')
 city = 'Philadelphia'
 state = 'Philadelphia'
 
@@ -24,16 +24,11 @@ receiver_email = 'rascherb95@gmail.com'
 
 #connection to gmail
 port = 465
-password = input("Password >>>")
-
+password = config('weather_api_pass')
 context = ssl.create_default_context()
 
-with smtplib.SMTP_SSL('smtp.gmail.com', port,
-                        context=context) as server:
-    server.login(sender_email,password)
-    server.sendmail(sender_email,receiver_email,message)
 
-#email to be sent skip 3 lines to ensure subject is picked up
+#email to be sent
 message = """\
 Subject: Your weather report for {}, {}
 
@@ -41,3 +36,9 @@ It is currently  {} degrees outside
 The real feel is {} degrees
 
 Send via python""".format(city,state,air_temp,real_feel)
+
+
+with smtplib.SMTP_SSL('smtp.gmail.com', port,
+                        context=context) as server:
+    server.login(sender_email,password)
+    server.sendmail(sender_email,receiver_email,message)
